@@ -88,11 +88,11 @@ log_dir.mkdir(exist_ok=True, parents=True)
 writer = SummaryWriter(log_dir=str(log_dir))
 
 decoder = net.decoder
-print(decoder)
-print(decoder.parameters())
-decoder = decoder.load_state_dict(torch.load(args.decoder)) 
-print(decoder)
-print(decoder.parameters())
+#print(decoder)
+#print(decoder.parameters())
+decoder.load_state_dict(torch.load(args.decoder)) 
+#print(decoder)
+#print(decoder.parameters())
 vgg = net.vgg
 
 vgg.load_state_dict(torch.load(args.vgg))
