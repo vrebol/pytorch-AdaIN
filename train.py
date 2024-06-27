@@ -62,6 +62,8 @@ parser.add_argument('--content_dir', type=str, required=True,
 parser.add_argument('--style_dir', type=str, required=True,
                     help='Directory path to a batch of style images')
 parser.add_argument('--vgg', type=str, default='models/vgg_normalised.pth')
+parser.add_argument('--decoder', type=str, default='models/decoder.pth')
+
 
 # training options
 parser.add_argument('--save_dir', default='./experiments',
@@ -86,6 +88,7 @@ log_dir.mkdir(exist_ok=True, parents=True)
 writer = SummaryWriter(log_dir=str(log_dir))
 
 decoder = net.decoder
+decoder = decoder.load_state_dict(torch.load(args.decoder)) 
 vgg = net.vgg
 
 vgg.load_state_dict(torch.load(args.vgg))
